@@ -17,9 +17,8 @@ class RingBuffer:
             #add the item to the head of the list
             self.storage.add_to_head(item)
 
-            #set it as the head of the ring buffer
-            self.current = self.storage.head
-            
+            #set it as the current item
+            self.current = self.storage.head            
 
         #if self.current is at the head and the ring buffer is full
         elif self.storage.length == self.capacity and self.current is self.storage.head:
@@ -27,10 +26,11 @@ class RingBuffer:
             #remove from the head
             self.storage.remove_from_head()
 
-            #add the new item to the head
+            #add the new item to the tail
             self.storage.add_to_tail(item)
 
-            #set the item at the tail as the oldest element
+            #set the item at the tail as the current item
+            #have to update self.current as it was removed from the head
             self.current = self.storage.tail
 
         #if self.current is not at the head and the ring buffer is full
@@ -40,13 +40,16 @@ class RingBuffer:
             self.storage.remove_from_head()
 
             #add the new item to the tail
-            self.storage.add_to_tail(item)            
+            self.storage.add_to_tail(item)     
+
+            #no need to update self.current as it was not removed (it was not at the head)       
 
         #if not at capacity
         else:
             #add the item to the tail  
             self.storage.add_to_tail(item)       
             
+            #no need to update self.current here either as it was not removed
 
     def get(self):
         # Note:  This is the only [] allowed
@@ -66,7 +69,7 @@ class RingBuffer:
             if self.current.next:
                 self.current = self.current.next  
 
-            #else assign the head node to current and append it to list_buffer_contents
+            #else assign the head node to current to be appended to list_buffer_contents
             else:
                 self.current = self.storage.head                  
             
