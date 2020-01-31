@@ -158,11 +158,11 @@ class BinarySearchTree:
             self.dft_print(node.right)
 
     #finds the size of the tree        
-    def getSize(self, node):
+    def get_size(self, node):
         if node is None:
             return		
 
-        return 1 + self.getSize(node.left) + return self.getSize(node.right)
+        return (get_size(node.left) + 1 + get_size(node.right))         
 	
 
     # STRETCH Goals -------------------------
