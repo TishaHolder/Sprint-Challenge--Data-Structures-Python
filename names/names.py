@@ -16,6 +16,16 @@ duplicates = []
 binary_tree1 = BinarySearchTree("names1")
 binary_tree2 = BinarySearchTree("names2")
 
+for i in range(0, len(names_1)):
+    binary_tree1.insert(names_1[i])
+
+for i in range(0, len(names_2)):
+    binary_tree2.insert(names_2[i])
+
+for i in range(0, len(names_1)):
+    if binary_tree2.contains(names_1[i]):
+        duplicates.append(names_1[i])
+
 """for name_1 in names_1:
     for name_2 in names_2:
         if name_1 == name_2:

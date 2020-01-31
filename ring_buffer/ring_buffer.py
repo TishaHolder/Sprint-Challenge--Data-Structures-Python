@@ -3,8 +3,9 @@ from doubly_linked_list import DoublyLinkedList
 
 class RingBuffer:
     def __init__(self, capacity):
+        #doesn't need a size, non-growable fixed size buffer or capacity is passed in during instantiation
         self.capacity = capacity
-        self.current = None
+        self.current = None #used to keep track of the oldest element
         self.storage = DoublyLinkedList()       
        
 
@@ -26,10 +27,10 @@ class RingBuffer:
             #remove from the head
             self.storage.remove_from_head()
 
-            #add the new item to the tail
+            #add the new item to the head
             self.storage.add_to_tail(item)
 
-            #set the item at the tail as the head of the list
+            #set the item at the tail as the oldest element
             self.current = self.storage.tail
 
         #if self.current is not at the head and the ring buffer is full
