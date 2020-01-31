@@ -47,9 +47,17 @@ class LinkedList:
     prev = None
     current = self.head 
 
+    #while there is an item in the list
     while(current is not None): 
+
+        #assign the current.next_node to next
         next = current.next_node
+
+        #assign prev to current.next_node
         current.next_node = prev 
+
+        #switch the pointers
         prev = current 
         current = next
+        
     self.head = prev 
