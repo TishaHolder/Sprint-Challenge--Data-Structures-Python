@@ -32,11 +32,19 @@ class RingBuffer:
             #set the item at the tail as the head of the list
             self.current = self.storage.tail
 
-        
+        #if self.current is not at the head and the ring buffer is full
+        elif self.storage.length == self.capacity and self.current is not self.storage.head:
+
+            #remove the item from the head
+            self.storage.remove_from_head()
+
+            #add the new item to the tail
+            self.storage.add_to_tail(item)            
+
         #if not at capacity
         else:
             #add the item to the tail  
-            self.storage.add_to_tail(item)           
+            self.storage.add_to_tail(item)   
     
             
 
@@ -45,6 +53,8 @@ class RingBuffer:
         list_buffer_contents = []
 
         # TODO: Your code here
+       
+
        
 
         return list_buffer_contents   
