@@ -44,8 +44,7 @@ class RingBuffer:
         #if not at capacity
         else:
             #add the item to the tail  
-            self.storage.add_to_tail(item)   
-    
+            self.storage.add_to_tail(item)       
             
 
     def get(self):
@@ -55,7 +54,21 @@ class RingBuffer:
         # TODO: Your code here
        
 
-       
+        #while not all the ring buffer's content is in list_buffer_contents
+        while self.storage.length != len(list_buffer_contents):
+
+            #add the current value in storage to the list_buffer_contents
+            list_buffer_contents.append(self.current.value) 
+
+            #if there is more than one item in the list
+            #assign it to current and append it to list_buffer_contents
+            if self.current.next:
+                self.current = self.current.next  
+
+            #else assign the head node to current and append it to list_buffer_contents
+            else:
+                self.current = self.storage.head                  
+            
 
         return list_buffer_contents   
 
